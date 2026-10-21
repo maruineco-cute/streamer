@@ -1008,6 +1008,8 @@ function doBlink(){
 function blinkLoop(){clearTimeout(blinkT);blinkT=setTimeout(()=>{if(S.scene==='live')doBlink();blinkLoop();},3000+Math.random()*3000);}
 function react(kind){
  if(S.scene!=='live'||!(hasFace('mouth')||hasFace('joy')))return;
+ if(kind==='chat'&&(!hasFace('mouth')||S.faceNow==='joy'))return;
+ if(kind!=='chat'&&!hasFace('joy')&&!hasFace('mouth'))return;
  clearInterval(talkT);clearTimeout(faceT);
  if(kind!=='chat'&&hasFace('joy')){showFace('joy');faceT=setTimeout(()=>showFace('base'),kind==='rainbow'?3200:2200);return;}
  if(!hasFace('mouth'))return;
